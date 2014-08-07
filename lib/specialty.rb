@@ -11,6 +11,22 @@ class Specialty
     @id = specialty_save.first['id'].to_i
   end
 
+
+  def ==(another_specialty)
+    self.name == another_specialty.name
+  end
+
+  def self.all
+    all_result = DB.exec("SELECT * FROM specialties;")
+    specialties = []
+    all_result.each do |specialty|
+      name = specialty['name']
+      specialties << Specialty.new({:name => name})
+    end
+    specialties
+  end
+
+
   def self.show_doctors input_specialty_id
    show_doctors_result = DB.exec("SELECT doctors.name
                                     FROM doctors JOIN specialties

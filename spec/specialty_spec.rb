@@ -9,7 +9,7 @@ describe "Specialty" do
     expect(test_specialty).to be_an_instance_of Specialty
   end
 
-  describe ".save" do
+  describe "save" do
     it "saves to the database" do
       test_specialty = Specialty.new({:name => "Cardiology"})
       test_specialty.save
@@ -17,7 +17,7 @@ describe "Specialty" do
     end
   end
 
-  describe "show_doctors" do
+  describe "self.show_doctors" do
     it "returns a list of doctors with a given specialty" do
       test_specialty = Specialty.new({:name => "Cardiology"})
       test_specialty.save
@@ -25,6 +25,16 @@ describe "Specialty" do
       test_doctor.save
       # binding.pry
       expect(Specialty.show_doctors(test_specialty.id)).to eq [test_doctor]
+    end
+  end
+
+  describe "self.all" do
+    it "returns a list of all specialties" do
+      test_specialty1 = Specialty.new({:name => "Cardiology"})
+      test_specialty2 = Specialty.new({:name => "Pediatrics"})
+      test_specialty1.save
+      test_specialty2.save
+      expect(Specialty.all).to eq [test_specialty1, test_specialty2]
     end
   end
 end
