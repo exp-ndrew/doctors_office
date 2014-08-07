@@ -1,4 +1,4 @@
-class Doctor
+class Doctor < UD
 
   attr_reader :name, :insurance_id, :specialty_id, :id
 

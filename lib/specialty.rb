@@ -1,4 +1,4 @@
-class Specialty
+class Specialty < UD
 
   attr_reader :name, :id
 

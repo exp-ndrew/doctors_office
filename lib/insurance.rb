@@ -1,4 +1,4 @@
-class Insurance
+class Insurance <UD
 
   attr_reader :name, :id
 

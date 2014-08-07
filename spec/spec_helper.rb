@@ -1,5 +1,6 @@
 require 'rspec'
 require 'pg'
+require 'ud'
 
 DB = PG.connect({:dbname => 'clinic_mgr_test'})
 

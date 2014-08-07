@@ -57,4 +57,15 @@ describe "Patient" do
       expect(test_patient.doctors).to eq [test_doctor1, test_doctor2]
     end
   end
+
+  describe "delete_item" do
+    it "deletes a patient from the database" do
+      test_patient1 = Patient.new({:name => 'Andrew', :dob => '2000-12-15', :insurance_id => 1})
+      test_patient2 = Patient.new({:name => 'Matt', :dob => '2000-12-15', :insurance_id => 1})
+      test_patient1.save
+      test_patient2.save
+      test_patient1.delete_item({:item_id => test_patient1.id, :table => 'patients'})
+      expect(Patient.all).to eq [test_patient2]
+    end
+  end
 end

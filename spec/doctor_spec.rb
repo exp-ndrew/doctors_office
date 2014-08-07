@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'doctor'
 
+
 describe "Doctor" do
   it 'is initialized with a name and specialty' do
     test_doctor = Doctor.new({:name => 'Dr. Smith', :insurance_id => 1})

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'insurance'
 require 'doctor'
-require 'pry'
+
 
 describe "Insurance" do
   it "initializes with a insurance name" do
@@ -23,7 +23,6 @@ describe "Insurance" do
       test_insurance.save
       test_doctor = Doctor.new({:name => 'Dr. Smith', :specialty_id => 1, :insurance_id => test_insurance.id})
       test_doctor.save
-      # binding.pry
       expect(Insurance.show_doctors(test_insurance.id)).to eq [test_doctor]
     end
   end

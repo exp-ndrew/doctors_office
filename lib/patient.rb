@@ -1,4 +1,4 @@
-class Patient
+class Patient < UD
 
   attr_reader :name, :dob, :insurance_id, :id
 
