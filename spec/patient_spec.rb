@@ -44,5 +44,17 @@ describe "Patient" do
       test_patient.assign_to(test_doctor.id)
       expect(test_patient.doctors).to eq [test_doctor]
     end
+
+    it "returns multiple doctors if a patient has multiple doctors" do
+      test_patient = Patient.new({:name => 'Andrew', :dob => '2000-12-15', :insurance_id => 1})
+      test_patient.save
+      test_doctor1 = Doctor.new({:name => 'Dr. Smith', :insurance_id => 1, :specialty_id => 1})
+      test_doctor2 = Doctor.new({:name => 'Dr. Smith', :insurance_id => 1, :specialty_id => 1})
+      test_doctor1.save
+      test_doctor2.save
+      test_patient.assign_to(test_doctor1.id)
+      test_patient.assign_to(test_doctor2.id)
+      expect(test_patient.doctors).to eq [test_doctor1, test_doctor2]
+    end
   end
 end
