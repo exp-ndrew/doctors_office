@@ -21,7 +21,7 @@ class Patient
     doctors_result = DB.exec("SELECT doctors.name
       FROM doctors JOIN dp_join
       ON (doctors.id = dp_join.doctor_id)
-      AND (dp_join.patient_id = #{@id})")
+      WHERE (dp_join.patient_id = #{@id})")
       doctors = []
     doctors_result.each do |doctor|
       name = doctor['name']

@@ -8,5 +8,6 @@ RSpec.configure do |config|
     DB.exec("DELETE FROM patients *;")
     DB.exec("DELETE FROM doctors *;")
     DB.exec("DELETE FROM dp_join *;")
+    DB.exec("DELETE FROM specialties *;")
   end
 end
