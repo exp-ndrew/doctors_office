@@ -1,6 +1,6 @@
 class Doctor
 
-  attr_reader :name, :insurance_id, :specialty_id
+  attr_reader :name, :insurance_id, :specialty_id, :id
 
   def initialize attributes
     @name = attributes[:name]
@@ -21,7 +21,8 @@ class Doctor
   end
 
   def save
-    DB.exec("INSERT INTO doctors (name, insurance_id, specialty_id) VALUES ('#{name}', #{insurance_id}, #{specialty_id});")
+    save = DB.exec("INSERT INTO doctors (name, insurance_id, specialty_id) VALUES ('#{name}', #{insurance_id}, #{specialty_id}) RETURNING id;")
+    @id = save.first['id'].to_i
   end
 
   def ==(another_doctor)

@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'patient'
+require 'doctor'
 
 describe "Patient" do
 
@@ -31,6 +32,17 @@ describe "Patient" do
       test_patient1 = Patient.new({:name => 'Andrew', :dob => '2000-12-15', :insurance_id => 1})
       test_patient2 = Patient.new({:name => 'Andrew', :dob => '2000-12-15', :insurance_id => 1})
       expect(test_patient1).to eq test_patient2
+    end
+  end
+
+  describe "assign_to" do
+    it "makes a new row in the join table given a doctor_id" do
+      test_patient = Patient.new({:name => 'Andrew', :dob => '2000-12-15', :insurance_id => 1})
+      test_patient.save
+      test_doctor = Doctor.new({:name => 'Dr. Smith', :insurance_id => 1, :specialty_id => 1})
+      test_doctor.save
+      test_patient.assign_to(test_doctor.id)
+      expect(test_patient.doctors).to eq [test_doctor]
     end
   end
 end
